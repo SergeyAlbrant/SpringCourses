@@ -1,5 +1,7 @@
 package ua.epam.spring.hometask.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.epam.spring.hometask.dao.EventDao;
 import ua.epam.spring.hometask.dao.TicketDao;
 import ua.epam.spring.hometask.domain.Auditorium;
@@ -13,6 +15,8 @@ import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Getter
+@Setter
 public class BookingServiceImpl implements BookingService {
 
     private EventDao eventDao;

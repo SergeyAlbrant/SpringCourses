@@ -27,6 +27,7 @@
           p:map-ref="auditoriums"/>
     <bean id="eventMapDao" class="ua.epam.spring.hometask.dao.impl.MapEventDao"/>
     <bean id="userMapDao" class="ua.epam.spring.hometask.dao.impl.MapUserDao"/>
+    <bean id="ticketMapDao" class="ua.epam.spring.hometask.dao.impl.MapTicketDao"/>
 
     <bean id="userService" class="ua.epam.spring.hometask.service.UserServiceImpl">
         <property name="userDao" ref="userMapDao"/>
@@ -38,6 +39,11 @@
 
     <bean id="auditoriumService" class="ua.epam.spring.hometask.service.AuditoriumServiceImpl">
         <property name="auditoriumDao" ref="auditoriumMapDao"/>
+    </bean>
+
+    <bean id="bookingService" class="ua.epam.spring.hometask.service.BookingServiceImpl">
+        <property name="ticketDao" ref="ticketMapDao"/>
+        <property name="eventDao" ref="eventMapDao"/>
     </bean>
 
 
