@@ -1,0 +1,31 @@
+package com.epam.spring.hometask.service.impl;
+
+
+import com.epam.spring.hometask.domain.Auditorium;
+import lombok.Getter;
+import lombok.Setter;
+import com.epam.spring.hometask.dao.AuditoriumDao;
+import com.epam.spring.hometask.service.AuditoriumService;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Set;
+
+@Setter
+@Getter
+public class AuditoriumServiceImpl implements AuditoriumService {
+
+    private AuditoriumDao auditoriumDao;
+
+    @Nonnull
+    @Override
+    public Set<Auditorium> getAll() {
+        return auditoriumDao.getAll();
+    }
+
+    @Nullable
+    @Override
+    public Auditorium getByName(@Nonnull String name) {
+        return auditoriumDao.getByName(name);
+    }
+}

@@ -25,37 +25,37 @@
     </bean>
 
 
-    <bean id="auditoriumMapDao" class="ua.epam.spring.hometask.dao.impl.MapAuditoriumDao"
+    <bean id="auditoriumMapDao" class="com.epam.spring.hometask.dao.impl.MapAuditoriumDao"
           p:map-ref="auditoriums"/>
-    <bean id="eventMapDao" class="ua.epam.spring.hometask.dao.impl.MapEventDao"/>
-    <bean id="userMapDao" class="ua.epam.spring.hometask.dao.impl.MapUserDao"/>
-    <bean id="ticketMapDao" class="ua.epam.spring.hometask.dao.impl.MapTicketDao"/>
+    <bean id="eventMapDao" class="com.epam.spring.hometask.dao.impl.MapEventDao"/>
+    <bean id="userMapDao" class="com.epam.spring.hometask.dao.impl.MapUserDao"/>
+    <bean id="ticketMapDao" class="com.epam.spring.hometask.dao.impl.MapTicketDao"/>
 
-    <bean id="userService" class="ua.epam.spring.hometask.service.impl.UserServiceImpl">
+    <bean id="userService" class="com.epam.spring.hometask.service.impl.UserServiceImpl">
         <property name="userDao" ref="userMapDao"/>
     </bean>
 
-    <bean id="eventService" class="ua.epam.spring.hometask.service.impl.EventServiceImpl">
+    <bean id="eventService" class="com.epam.spring.hometask.service.impl.EventServiceImpl">
         <property name="eventDao" ref="eventMapDao"/>
     </bean>
 
-    <bean id="auditoriumService" class="ua.epam.spring.hometask.service.impl.AuditoriumServiceImpl">
+    <bean id="auditoriumService" class="com.epam.spring.hometask.service.impl.AuditoriumServiceImpl">
         <property name="auditoriumDao" ref="auditoriumMapDao"/>
     </bean>
 
-    <bean id="bookingService" class="ua.epam.spring.hometask.service.impl.BookingServiceImpl">
+    <bean id="bookingService" class="com.epam.spring.hometask.service.impl.BookingServiceImpl">
         <property name="ticketDao" ref="ticketMapDao"/>
         <property name="eventDao" ref="eventMapDao"/>
         <property name="discountService" ref="discountService"/>
     </bean>
 
 
-    <bean id="firstAuditorium" class="ua.epam.spring.hometask.domain.Auditorium"
+    <bean id="firstAuditorium" class="com.epam.spring.hometask.domain.Auditorium"
           p:name="${first.name}"
           p:numberOfSeats="${first.seats_number}"
           p:vipSeats="#{'${first.vip_seats}'.split(',')}"/>
 
-    <bean id="secondAuditorium" class="ua.epam.spring.hometask.domain.Auditorium"
+    <bean id="secondAuditorium" class="com.epam.spring.hometask.domain.Auditorium"
           p:name="${second.name}"
           p:numberOfSeats="${second.seats_number}"
           p:vipSeats="#{'${second.vip_seats}'.split(',')}"/>

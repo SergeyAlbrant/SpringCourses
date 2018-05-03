@@ -23,25 +23,25 @@
     </bean>
 
 
-    <bean id="auditoriumMapDao" class="ua.epam.spring.hometask.dao.impl.MapAuditoriumDao"
+    <bean id="auditoriumMapDao" class="com.epam.spring.hometask.dao.impl.MapAuditoriumDao"
           p:map-ref="auditoriums"/>
-    <bean id="eventMapDao" class="ua.epam.spring.hometask.dao.impl.MapEventDao"/>
-    <bean id="userMapDao" class="ua.epam.spring.hometask.dao.impl.MapUserDao"/>
-    <bean id="ticketMapDao" class="ua.epam.spring.hometask.dao.impl.MapTicketDao"/>
+    <bean id="eventMapDao" class="com.epam.spring.hometask.dao.impl.MapEventDao"/>
+    <bean id="userMapDao" class="com.epam.spring.hometask.dao.impl.MapUserDao"/>
+    <bean id="ticketMapDao" class="com.epam.spring.hometask.dao.impl.MapTicketDao"/>
 
-    <bean id="userService" class="ua.epam.spring.hometask.service.impl.UserServiceImpl">
+    <bean id="userService" class="com.epam.spring.hometask.service.impl.UserServiceImpl">
         <property name="userDao" ref="userMapDao"/>
     </bean>
 
-    <bean id="eventService" class="ua.epam.spring.hometask.service.impl.EventServiceImpl">
+    <bean id="eventService" class="com.epam.spring.hometask.service.impl.EventServiceImpl">
         <property name="eventDao" ref="eventMapDao"/>
     </bean>
 
-    <bean id="auditoriumService" class="ua.epam.spring.hometask.service.impl.AuditoriumServiceImpl">
+    <bean id="auditoriumService" class="com.epam.spring.hometask.service.impl.AuditoriumServiceImpl">
         <property name="auditoriumDao" ref="auditoriumMapDao"/>
     </bean>
 
-    <bean id="discountService" class="ua.epam.spring.hometask.service.impl.DiscountServiceImpl">
+    <bean id="discountService" class="com.epam.spring.hometask.service.impl.DiscountServiceImpl">
         <property name="strategies">
             <list>
                 <ref bean="birthdayStrategy" />
@@ -51,6 +51,6 @@
     </bean>
 
 
-    <bean id="birthdayStrategy" class="ua.epam.spring.hometask.service.discount.BirthdayDiscountStrategy"/>
-    <bean id="tenthDayStrategy" class="ua.epam.spring.hometask.service.discount.BirthdayDiscountStrategy"/>
+    <bean id="birthdayStrategy" class="com.epam.spring.hometask.service.discount.BirthdayDiscountStrategy"/>
+    <bean id="tenthDayStrategy" class="com.epam.spring.hometask.service.discount.BirthdayDiscountStrategy"/>
 </beans>
