@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ 		http://www.springframework.org/schema/util
+ 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:auditorium1.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true" />
+        <property name="systemPropertiesMode">
+            <util:constant
+                    static-field="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+        </property>
+    </bean>
+
+
+    <bean id="auditoriumMapDao" class="ua.epam.spring.hometask.dao.impl.MapAuditoriumDao"
+          p:map-ref="auditoriums"/>
+    <bean id="eventMapDao" class="ua.epam.spring.hometask.dao.impl.MapEventDao"/>
+    <bean id="userMapDao" class="ua.epam.spring.hometask.dao.impl.MapUserDao"/>
+
+    <bean id="userService" class="ua.epam.spring.hometask.service.UserServiceImpl">
+        <property name="userDao" ref="userMapDao"/>
+    </bean>
+
+    <bean id="eventService" class="ua.epam.spring.hometask.service.EventServiceImpl">
+        <property name="eventDao" ref="eventMapDao"/>
+    </bean>
+
+    <bean id="auditoriumService" class="ua.epam.spring.hometask.service.AuditoriumServiceImpl">
+        <property name="auditoriumDao" ref="auditoriumMapDao"/>
+    </bean>
+
+
+    <bean id="firstAuditorium" class="ua.epam.spring.hometask.domain.Auditorium"
+          p:name="${first.name}"
+          p:numberOfSeats="${first.seats_number}"
+          p:vipSeats="#{'${first.vip_seats}'.split(',')}"/>
+
+    <bean id="secondAuditorium" class="ua.epam.spring.hometask.domain.Auditorium"
+          p:name="${second.name}"
+          p:numberOfSeats="${second.seats_number}"
+          p:vipSeats="#{'${second.vip_seats}'.split(',')}"/>
+
+    <util:map id="auditoriums">
+        <entry key="1" value-ref="firstAuditorium" />
+        <entry key="2" value-ref="secondAuditorium" />
+    </util:map>
+
+</beans>

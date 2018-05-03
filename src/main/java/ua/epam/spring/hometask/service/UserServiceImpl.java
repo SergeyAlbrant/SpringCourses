@@ -1,5 +1,7 @@
 package ua.epam.spring.hometask.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.epam.spring.hometask.dao.UserDao;
 import ua.epam.spring.hometask.domain.User;
 
@@ -7,6 +9,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collection;
 
+@Setter
+@Getter
 public class UserServiceImpl implements UserService {
 
     private UserDao userDao;

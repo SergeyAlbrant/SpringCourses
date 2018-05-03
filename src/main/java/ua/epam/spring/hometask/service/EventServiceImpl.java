@@ -1,5 +1,7 @@
 package ua.epam.spring.hometask.service;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.epam.spring.hometask.dao.EventDao;
 import ua.epam.spring.hometask.domain.Event;
 
@@ -10,6 +12,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Set;
 
+@Setter
+@Getter
 public class EventServiceImpl implements EventService {
 
     private EventDao eventDao;

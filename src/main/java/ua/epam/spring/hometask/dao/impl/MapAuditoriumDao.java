@@ -1,5 +1,7 @@
 package ua.epam.spring.hometask.dao.impl;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.epam.spring.hometask.dao.AuditoriumDao;
 import ua.epam.spring.hometask.domain.Auditorium;
 import java.util.HashMap;
@@ -9,6 +11,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
 public class MapAuditoriumDao implements AuditoriumDao {
 
     Map<Long, Auditorium> map = new HashMap<>();
