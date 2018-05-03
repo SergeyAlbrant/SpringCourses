@@ -9,8 +9,6 @@
  		http://www.springframework.org/schema/util
  		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
-    <import resource="classpath:discounts.xml"/>
-
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
@@ -43,25 +41,16 @@
         <property name="auditoriumDao" ref="auditoriumMapDao"/>
     </bean>
 
-    <bean id="bookingService" class="ua.epam.spring.hometask.service.impl.BookingServiceImpl">
-        <property name="ticketDao" ref="ticketMapDao"/>
-        <property name="eventDao" ref="eventMapDao"/>
+    <bean id="discountService" class="ua.epam.spring.hometask.service.impl.DiscountServiceImpl">
+        <property name="strategies">
+            <list>
+                <ref bean="birthdayStrategy" />
+                <ref bean="tenthDayStrategy" />
+            </list>
+        </property>
     </bean>
 
 
-    <bean id="firstAuditorium" class="ua.epam.spring.hometask.domain.Auditorium"
-          p:name="${first.name}"
-          p:numberOfSeats="${first.seats_number}"
-          p:vipSeats="#{'${first.vip_seats}'.split(',')}"/>
-
-    <bean id="secondAuditorium" class="ua.epam.spring.hometask.domain.Auditorium"
-          p:name="${second.name}"
-          p:numberOfSeats="${second.seats_number}"
-          p:vipSeats="#{'${second.vip_seats}'.split(',')}"/>
-
-    <util:map id="auditoriums">
-        <entry key="1" value-ref="firstAuditorium" />
-        <entry key="2" value-ref="secondAuditorium" />
-    </util:map>
-
+    <bean id="birthdayStrategy" class="ua.epam.spring.hometask.service.discount.BirthdayDiscountStrategy"/>
+    <bean id="tenthDayStrategy" class="ua.epam.spring.hometask.service.discount.BirthdayDiscountStrategy"/>
 </beans>

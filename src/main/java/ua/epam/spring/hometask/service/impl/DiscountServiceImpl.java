@@ -1,5 +1,7 @@
 package ua.epam.spring.hometask.service.impl;
 
+import lombok.Getter;
+import lombok.Setter;
 import ua.epam.spring.hometask.domain.Event;
 import ua.epam.spring.hometask.domain.User;
 import ua.epam.spring.hometask.service.DiscountService;
@@ -10,6 +12,8 @@ import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Getter
+@Setter
 public class DiscountServiceImpl implements DiscountService {
 
     List<DiscountStrategy> strategies;
@@ -19,6 +23,13 @@ public class DiscountServiceImpl implements DiscountService {
                             @Nonnull Event event,
                             @Nonnull LocalDateTime airDateTime,
                             long numberOfTickets) {
-        return 0;
+
+        byte discount = 0;
+
+        for (DiscountStrategy strategy : strategies) {
+            discount = (byte) Math.max(strategy.getDiscount(user, event, airDateTime, numberOfTickets), discount);
+        }
+
+        return discount;
     }
 }

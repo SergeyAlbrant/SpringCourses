@@ -16,6 +16,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDateTime;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -30,18 +31,23 @@ public class BookingServiceImpl implements BookingService {
                                   @Nonnull LocalDateTime dateTime,
                                   @Nullable User user,
                                   @Nonnull Set<Long> seats) {
-
-        // TODO: 03-May-18 add discount calculation
-        // TODO: 03-May-18 check if booked
+        
         final double basePrice = event.getBasePrice();
         final EventRating rating = event.getRating();
-        //final byte discount = discountService.getDiscount(user, event, dateTime, seats.size());
+        final byte discount = (byte) (discountService.getDiscount(user, event, dateTime, seats.size()) / 100);
         final Auditorium auditorium = event.getAuditoriums().get(dateTime);
         final Set<Long> allSeats = auditorium.getAllSeats();
         final Set<Long> vipSeats = auditorium.getVipSeats();
+        final Set<Long> bookedSeats = getPurchasedTicketsForEvent(event, dateTime).stream()
+                                                                                  .map(Ticket::getSeat)
+                                                                                  .collect(Collectors.toSet());
 
         if (!allSeats.containsAll(seats)) {
             throw new IllegalArgumentException("Some of these seats are not exist");
+        }
+
+        if (seats.stream().anyMatch(bookedSeats::contains)) {
+            throw new IllegalArgumentException("Some of these seats are booked");
         }
 
         double ticketsPrice = seats.stream()
@@ -49,7 +55,7 @@ public class BookingServiceImpl implements BookingService {
                                    .sum();
 
 
-        return rating.equals(EventRating.HIGH) ? ticketsPrice * 1.2 : ticketsPrice;
+        return rating.equals(EventRating.HIGH) ? discount * ticketsPrice * 1.2 : discount * ticketsPrice;
     }
 
     @Override
