@@ -52,7 +52,7 @@ public class MapAuditoriumDaoTest {
         auditoriums.forEach(auditorium -> {
             assertNotNull(auditorium);
             assertNotNull(auditorium.getName());
-            assertNotNull(auditorium.getNumberOfSeats());
+            assertThat(auditorium.getNumberOfSeats(), not(lessThan(0L)));
             assertNotNull(auditorium.getVipSeats());
         });
     }
