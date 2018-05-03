@@ -5,7 +5,10 @@ import ua.epam.spring.hometask.domain.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Set;
 
 public class EventServiceImpl implements EventService {
 
@@ -15,6 +18,18 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event getByName(@Nonnull String name) {
         return eventDao.getByName(name);
+    }
+
+    @Nonnull
+    @Override
+    public Set<Event> getForDateRange(@Nonnull LocalDate from, @Nonnull LocalDate to) {
+        return eventDao.getForDateRange(from, to);
+    }
+
+    @Nonnull
+    @Override
+    public Set<Event> getNextEvents(@Nonnull LocalDateTime to) {
+        return eventDao.getNextEvents(to);
     }
 
     @Override
