@@ -1,9 +1,10 @@
-package ua.epam.spring.hometask.service;
+package ua.epam.spring.hometask.service.impl;
 
 import lombok.Getter;
 import lombok.Setter;
 import ua.epam.spring.hometask.dao.EventDao;
 import ua.epam.spring.hometask.domain.Event;
+import ua.epam.spring.hometask.service.EventService;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

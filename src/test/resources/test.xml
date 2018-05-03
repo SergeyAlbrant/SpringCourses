@@ -12,7 +12,7 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:auditorium1.properties</value>
+                <value>classpath:auditoriums.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true" />
@@ -29,19 +29,19 @@
     <bean id="userMapDao" class="ua.epam.spring.hometask.dao.impl.MapUserDao"/>
     <bean id="ticketMapDao" class="ua.epam.spring.hometask.dao.impl.MapTicketDao"/>
 
-    <bean id="userService" class="ua.epam.spring.hometask.service.UserServiceImpl">
+    <bean id="userService" class="ua.epam.spring.hometask.service.impl.UserServiceImpl">
         <property name="userDao" ref="userMapDao"/>
     </bean>
 
-    <bean id="eventService" class="ua.epam.spring.hometask.service.EventServiceImpl">
+    <bean id="eventService" class="ua.epam.spring.hometask.service.impl.EventServiceImpl">
         <property name="eventDao" ref="eventMapDao"/>
     </bean>
 
-    <bean id="auditoriumService" class="ua.epam.spring.hometask.service.AuditoriumServiceImpl">
+    <bean id="auditoriumService" class="ua.epam.spring.hometask.service.impl.AuditoriumServiceImpl">
         <property name="auditoriumDao" ref="auditoriumMapDao"/>
     </bean>
 
-    <bean id="bookingService" class="ua.epam.spring.hometask.service.BookingServiceImpl">
+    <bean id="bookingService" class="ua.epam.spring.hometask.service.impl.BookingServiceImpl">
         <property name="ticketDao" ref="ticketMapDao"/>
         <property name="eventDao" ref="eventMapDao"/>
     </bean>
