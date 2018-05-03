@@ -3,7 +3,9 @@ package ua.epam.spring.hometask.dao.impl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ua.epam.spring.hometask.domain.User;
 
@@ -11,15 +13,14 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD;
 
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:test.xml"})
 public class MapUserDaoTest {
 
     private static final Long TEST_ID = 1L;
@@ -31,12 +32,11 @@ public class MapUserDaoTest {
     private static final String SECOND_TEST_LASTNAME = "Petin";
     private static final String SECOND_TEST_EMAIL = "petin@gmail.com";
 
+    @Autowired
     private MapUserDao userDao;
 
     @Before
     public void setUp() {
-        userDao = new MapUserDao();
-
         userDao.save(buildUser(null, TEST_FIRSTNAME, TEST_LASTNAME, TEST_EMAIL));
         userDao.save(buildUser(null, "Ivan", "Ivanov", "ivanov@gmail.com"));
     }

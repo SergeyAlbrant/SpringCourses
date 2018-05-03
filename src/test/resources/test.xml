@@ -12,7 +12,7 @@
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:auditorium1.properties</value>
+                <value>classpath:auditoriums.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true" />
