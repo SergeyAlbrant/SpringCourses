@@ -1,7 +1,7 @@
-package ua.epam.spring.hometask.dao;
+package com.epam.spring.hometask.dao;
 
-import ua.epam.spring.hometask.domain.Event;
-import ua.epam.spring.hometask.domain.Ticket;
+import com.epam.spring.hometask.domain.Event;
+import com.epam.spring.hometask.domain.Ticket;
 
 import java.time.LocalDateTime;
 import java.util.Set;
