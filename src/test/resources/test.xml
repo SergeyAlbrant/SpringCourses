@@ -46,6 +46,7 @@
     <bean id="bookingService" class="ua.epam.spring.hometask.service.impl.BookingServiceImpl">
         <property name="ticketDao" ref="ticketMapDao"/>
         <property name="eventDao" ref="eventMapDao"/>
+        <property name="discountService" ref="discountService"/>
     </bean>
 
 

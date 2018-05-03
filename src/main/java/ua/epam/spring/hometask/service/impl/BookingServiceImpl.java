@@ -31,10 +31,10 @@ public class BookingServiceImpl implements BookingService {
                                   @Nonnull LocalDateTime dateTime,
                                   @Nullable User user,
                                   @Nonnull Set<Long> seats) {
-        
+
         final double basePrice = event.getBasePrice();
-        final EventRating rating = event.getRating();
         final byte discount = (byte) (discountService.getDiscount(user, event, dateTime, seats.size()) / 100);
+        final EventRating rating = event.getRating();
         final Auditorium auditorium = event.getAuditoriums().get(dateTime);
         final Set<Long> allSeats = auditorium.getAllSeats();
         final Set<Long> vipSeats = auditorium.getVipSeats();
