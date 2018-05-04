@@ -1,5 +1,6 @@
-package com.epam.spring.hometask.dao.impl;
+package com.epam.spring.hometask.dao;
 
+import com.epam.spring.hometask.dao.AuditoriumDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,11 +19,11 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test.xml"})
-public class MapAuditoriumDaoTest {
+public class AuditoriumDaoTest {
 
     private static final String TEST_NAME = "Usual";
     @Autowired
-    private MapAuditoriumDao auditoriumDao;
+    private AuditoriumDao auditoriumDao;
 
     @Before
     public void setUp() {

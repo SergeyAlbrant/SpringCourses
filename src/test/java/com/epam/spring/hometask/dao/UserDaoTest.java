@@ -1,5 +1,6 @@
-package com.epam.spring.hometask.dao.impl;
+package com.epam.spring.hometask.dao;
 
+import com.epam.spring.hometask.dao.UserDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:test.xml"})
-public class MapUserDaoTest {
+public class UserDaoTest {
 
     private static final Long TEST_ID = 1L;
     private static final String TEST_FIRSTNAME = "Sergei";
@@ -37,7 +38,7 @@ public class MapUserDaoTest {
     private static final LocalDate SECOND_TEST_BIRTHDAY = LocalDate.of(1971, Month.APRIL, 2);
 
     @Autowired
-    private MapUserDao userDao;
+    private UserDao userDao;
 
     @Before
     public void setUp() {
