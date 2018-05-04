@@ -15,11 +15,11 @@ public class TenthTicketDiscountStrategy implements DiscountStrategy {
                             long numberOfTickets) {
 
         if (user != null) {
-            if (((user.getTickets().size() + numberOfTickets) % 10) - (user.getTickets().size() % 10) > 0) {
+            if (((user.getTickets().size() + numberOfTickets) / 10) - (user.getTickets().size() / 10) > 0) {
                 return 50;
             }
         } else {
-            if (numberOfTickets % 10 > 0)
+            if (numberOfTickets / 10 > 0)
                 return 50;
         }
 

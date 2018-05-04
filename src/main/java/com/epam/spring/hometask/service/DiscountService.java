@@ -1,16 +1,19 @@
 package com.epam.spring.hometask.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.User;
+import com.epam.spring.hometask.service.discount.DiscountStrategy;
 
 /**
  * @author Yuriy_Tkach
  */
+
 public interface DiscountService {
 
     /**
@@ -29,4 +32,7 @@ public interface DiscountService {
      */
     byte getDiscount(@Nullable User user, @Nonnull Event event, @Nonnull LocalDateTime airDateTime, long numberOfTickets);
 
+    List<DiscountStrategy> getStrategies();
+
+    void setStrategies(List<DiscountStrategy> strategies);
 }

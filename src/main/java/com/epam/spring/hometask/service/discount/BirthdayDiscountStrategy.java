@@ -16,6 +16,9 @@ public class BirthdayDiscountStrategy implements DiscountStrategy {
                             @Nonnull LocalDateTime airDateTime,
                             long numberOfTickets) {
 
+        if (user == null) {
+            return 0;
+        }
         LocalDate birthday = user.getBirthday();
         LocalDate airDate = airDateTime.toLocalDate();
 
