@@ -32,8 +32,8 @@ public class EventDaoTest {
     private static final String SECOND_TEST_NAME = "Avatar";
     private static final double SECOND_BASE_PRICE = 23;
     private static final EventRating SECOND_RATING = EventRating.LOW;
-    public static final LocalDateTime DATETIME_NOW = LocalDateTime.now();
-    public static final LocalDate DATE_NOW = LocalDate.now();
+    private static final LocalDateTime DATETIME_NOW = LocalDateTime.now();
+    private static final LocalDate DATE_NOW = LocalDate.now();
 
     @Before
     public void setUp() {
