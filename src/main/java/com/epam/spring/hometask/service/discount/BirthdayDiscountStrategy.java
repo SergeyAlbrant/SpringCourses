@@ -22,6 +22,6 @@ public class BirthdayDiscountStrategy implements DiscountStrategy {
         LocalDate birthday = user.getBirthday();
         LocalDate airDate = airDateTime.toLocalDate();
 
-        return Math.abs(ChronoUnit.DAYS.between(birthday, airDate)) > 5 ? (byte) 5 : (byte) 0;
+        return Math.abs(ChronoUnit.DAYS.between(birthday, airDate)) <= 5 ? (byte) 5 : (byte) 0;
     }
 }
