@@ -39,8 +39,8 @@ public class BookingServiceImpl implements BookingService {
         final Set<Long> allSeats = auditorium.getAllSeats();
         final Set<Long> vipSeats = auditorium.getVipSeats();
         final Set<Long> bookedSeats = getPurchasedTicketsForEvent(event, dateTime).stream()
-                                                                                  .map(Ticket::getSeat)
-                                                                                  .collect(Collectors.toSet());
+                .map(Ticket::getSeat)
+                .collect(Collectors.toSet());
 
         if (!allSeats.containsAll(seats)) {
             throw new IllegalArgumentException("Some of these seats are not exist");
@@ -51,16 +51,21 @@ public class BookingServiceImpl implements BookingService {
         }
 
         double ticketsPrice = seats.stream()
-                                   .mapToDouble(seat -> vipSeats.contains(seat) ? basePrice * 2 : basePrice)
-                                   .sum();
+                .mapToDouble(seat -> vipSeats.contains(seat) ? basePrice * 2 : basePrice)
+                .sum();
 
-
-        return rating.equals(EventRating.HIGH) ? discount * ticketsPrice * 1.2 : discount * ticketsPrice;
+        if (discount > 0) {
+            ticketsPrice *= discount;
+        }
+        return rating.equals(EventRating.HIGH) ? ticketsPrice * 1.2 : ticketsPrice;
     }
 
     @Override
     public void bookTickets(@Nonnull Set<Ticket> tickets) {
         tickets.forEach(ticket -> {
+            if (getPurchasedTicketsForEvent(ticket.getEvent(), ticket.getDateTime()).contains(ticket)) {
+                throw new IllegalArgumentException("Some of these seats are booked");
+            }
             ticketDao.save(ticket);
             User user = ticket.getUser();
             if (user != null)
