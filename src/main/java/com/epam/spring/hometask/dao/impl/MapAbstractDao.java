@@ -1,6 +1,6 @@
 package com.epam.spring.hometask.dao.impl;
 
-import com.epam.spring.hometask.Utils.ValidationUtils;
+import com.epam.spring.hometask.utils.ValidationUtils;
 import com.epam.spring.hometask.dao.AbstractDao;
 import com.epam.spring.hometask.domain.DomainObject;
 
@@ -21,6 +21,7 @@ public abstract class MapAbstractDao<T extends DomainObject> implements Abstract
         if (entity.getId() == null) {
             entity.setId(id.getAndIncrement());
         }
+
         map.put(entity.getId(), entity);
 
         return entity;

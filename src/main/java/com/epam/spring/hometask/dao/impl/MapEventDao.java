@@ -1,6 +1,7 @@
 package com.epam.spring.hometask.dao.impl;
 
 import com.epam.spring.hometask.dao.EventDao;
+import com.epam.spring.hometask.utils.ValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
 import com.epam.spring.hometask.domain.Event;
@@ -17,6 +18,10 @@ public class MapEventDao extends MapAbstractDao<Event> implements EventDao {
 
     @Override
     public Event getByName(String name) {
+        if (!ValidationUtils.isNotEmpty(name)) {
+            throw new IllegalArgumentException("Empty name " + name);
+        }
+
         List<Event> events = map.values()
                                 .stream()
                                 .filter(event -> event.getName().equals(name))

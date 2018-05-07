@@ -2,6 +2,7 @@ package com.epam.spring.hometask.dao.impl;
 
 import com.epam.spring.hometask.dao.AuditoriumDao;
 import com.epam.spring.hometask.domain.Auditorium;
+import com.epam.spring.hometask.utils.ValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,10 +21,13 @@ public class MapAuditoriumDao implements AuditoriumDao {
 
     @Override
     public Auditorium getByName(String name) {
+        if (!ValidationUtils.isNotEmpty(name)) {
+            throw new IllegalArgumentException("Empty name " + name);
+        }
         List<Auditorium> auditoriums = map.values()
-                                     .stream()
-                                     .filter(auditorium -> auditorium.getName().equals(name))
-                                     .collect(Collectors.toList());
+                                          .stream()
+                                          .filter(auditorium -> auditorium.getName().equals(name))
+                                          .collect(Collectors.toList());
         if (auditoriums.size() > 1) {
             throw new IllegalStateException("More than one auditorium with such name " + name);
         }
