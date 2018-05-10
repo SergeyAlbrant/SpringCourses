@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -19,6 +20,7 @@ import java.util.Set;
 @PropertySource("classpath:auditoriums.properties")
 @Import(DiscountsConfig.class)
 @ComponentScan(basePackages = "com.epam")
+@EnableAspectJAutoProxy
 public class MainConfig {
 
     @Autowired
