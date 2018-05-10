@@ -1,26 +1,9 @@
 package com.epam.spring.hometask.configuration;
 
-
-import com.epam.spring.hometask.dao.AuditoriumDao;
-import com.epam.spring.hometask.dao.EventDao;
-import com.epam.spring.hometask.dao.TicketDao;
-import com.epam.spring.hometask.dao.UserDao;
-import com.epam.spring.hometask.dao.impl.MapAuditoriumDao;
-import com.epam.spring.hometask.dao.impl.MapEventDao;
-import com.epam.spring.hometask.dao.impl.MapTicketDao;
-import com.epam.spring.hometask.dao.impl.MapUserDao;
 import com.epam.spring.hometask.domain.Auditorium;
-import com.epam.spring.hometask.service.AuditoriumService;
-import com.epam.spring.hometask.service.BookingService;
-import com.epam.spring.hometask.service.DiscountService;
-import com.epam.spring.hometask.service.EventService;
-import com.epam.spring.hometask.service.UserService;
-import com.epam.spring.hometask.service.impl.AuditoriumServiceImpl;
-import com.epam.spring.hometask.service.impl.BookingServiceImpl;
-import com.epam.spring.hometask.service.impl.EventServiceImpl;
-import com.epam.spring.hometask.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -35,10 +18,8 @@ import java.util.Set;
 @Configuration
 @PropertySource("classpath:auditoriums.properties")
 @Import(DiscountsConfig.class)
+@ComponentScan(basePackages = "com.epam")
 public class MainConfig {
-
-    @Autowired
-    private DiscountService discountService;
 
     @Autowired
     private Environment env;
@@ -49,63 +30,11 @@ public class MainConfig {
     }
 
     @Bean
-    public AuditoriumDao auditoriumMapDao() {
-        MapAuditoriumDao mapAuditoriumDao = new MapAuditoriumDao();
-        mapAuditoriumDao.setMap(auditoriumsMap());
-        return mapAuditoriumDao;
-    }
-
-    @Bean
     public Map<Long, Auditorium> auditoriumsMap() {
         Map<Long, Auditorium> map = new HashMap<>();
         map.put(1L, firstAuditorium());
         map.put(2L, secondAuditorium());
         return map;
-    }
-
-    @Bean
-    public EventDao eventMapDao() {
-        return new MapEventDao();
-    }
-
-    @Bean
-    public UserDao userMapDao() {
-        return new MapUserDao();
-    }
-
-    @Bean
-    public TicketDao ticketMapDao() {
-        return new MapTicketDao();
-    }
-
-    @Bean
-    public UserService userService() {
-        UserServiceImpl userService = new UserServiceImpl();
-        userService.setUserDao(userMapDao());
-        return userService;
-    }
-
-    @Bean
-    public EventService eventService() {
-        EventServiceImpl eventService = new EventServiceImpl();
-        eventService.setEventDao(eventMapDao());
-        return eventService;
-    }
-
-    @Bean
-    public AuditoriumService auditoriumService() {
-        AuditoriumServiceImpl auditoriumService = new AuditoriumServiceImpl();
-        auditoriumService.setAuditoriumDao(auditoriumMapDao());
-        return auditoriumService;
-    }
-
-    @Bean
-    public BookingService bookingService() {
-        BookingServiceImpl bookingService = new BookingServiceImpl();
-        bookingService.setEventDao(eventMapDao());
-        bookingService.setTicketDao(ticketMapDao());
-        bookingService.setDiscountService(discountService);
-        return bookingService;
     }
 
     @Bean

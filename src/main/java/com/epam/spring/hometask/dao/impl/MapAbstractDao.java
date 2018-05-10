@@ -3,6 +3,7 @@ package com.epam.spring.hometask.dao.impl;
 import com.epam.spring.hometask.utils.ValidationUtils;
 import com.epam.spring.hometask.dao.AbstractDao;
 import com.epam.spring.hometask.domain.DomainObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.HashMap;

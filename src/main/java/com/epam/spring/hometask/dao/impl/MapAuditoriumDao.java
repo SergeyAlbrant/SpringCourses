@@ -5,7 +5,9 @@ import com.epam.spring.hometask.domain.Auditorium;
 import com.epam.spring.hometask.utils.ValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -15,8 +17,10 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Repository
 public class MapAuditoriumDao implements AuditoriumDao {
 
+    @Resource(name="auditoriumsMap")
     Map<Long, Auditorium> map = new HashMap<>();
 
     @Override

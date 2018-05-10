@@ -5,6 +5,7 @@ import com.epam.spring.hometask.utils.ValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
 import com.epam.spring.hometask.domain.Event;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Repository
 public class MapEventDao extends MapAbstractDao<Event> implements EventDao {
 
     @Override

@@ -5,12 +5,14 @@ import com.epam.spring.hometask.utils.ValidationUtils;
 import lombok.Getter;
 import lombok.Setter;
 import com.epam.spring.hometask.domain.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Repository
 public class MapUserDao extends MapAbstractDao<User> implements UserDao {
 
 

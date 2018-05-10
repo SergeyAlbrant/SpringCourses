@@ -11,6 +11,8 @@ import com.epam.spring.hometask.domain.Ticket;
 import com.epam.spring.hometask.domain.User;
 import com.epam.spring.hometask.service.BookingService;
 import com.epam.spring.hometask.service.DiscountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,10 +22,14 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Service
 public class BookingServiceImpl implements BookingService {
 
+    @Autowired
     private EventDao eventDao;
+    @Autowired
     private TicketDao ticketDao;
+    @Autowired
     private DiscountService discountService;
 
     @Override

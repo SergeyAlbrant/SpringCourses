@@ -5,6 +5,8 @@ import lombok.Setter;
 import com.epam.spring.hometask.dao.EventDao;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.service.EventService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -15,8 +17,10 @@ import java.util.Set;
 
 @Setter
 @Getter
+@Service
 public class EventServiceImpl implements EventService {
 
+    @Autowired
     private EventDao eventDao;
 
     @Nullable

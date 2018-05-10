@@ -5,6 +5,8 @@ import com.epam.spring.hometask.domain.User;
 import com.epam.spring.hometask.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -12,8 +14,10 @@ import java.util.Collection;
 
 @Setter
 @Getter
+@Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
     private UserDao userDao;
 
     @Nullable

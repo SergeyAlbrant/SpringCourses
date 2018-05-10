@@ -6,6 +6,7 @@ import com.epam.spring.hometask.domain.Ticket;
 import lombok.Getter;
 import lombok.Setter;
 import com.epam.spring.hometask.dao.TicketDao;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Repository
 public class MapTicketDao extends MapAbstractDao<Ticket> implements TicketDao {
 
     @Override
