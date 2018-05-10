@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.dao;
 
+import com.epam.spring.hometask.configuration.MainConfig;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.Ticket;
 import com.epam.spring.hometask.domain.User;
@@ -17,7 +18,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test.xml"})
+@ContextConfiguration(classes = {MainConfig.class})
 public class TicketDaoTest {
 
     private static final Event TEST_EVENT = new Event();
@@ -37,8 +38,7 @@ public class TicketDaoTest {
     }
 
     private Ticket buildTicket(User user, Event event, LocalDateTime dateTime, long seat) {
-        Ticket ticket = new Ticket(user, event, dateTime, seat);
-        return ticket;
+        return new Ticket(user, event, dateTime, seat);
     }
 
 

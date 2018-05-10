@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.dao;
 
+import com.epam.spring.hometask.configuration.MainConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,7 @@ import static org.junit.Assert.assertThat;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test.xml"})
+@ContextConfiguration(classes = {MainConfig.class})
 public class UserDaoTest {
 
     private static final Long TEST_ID = 1L;

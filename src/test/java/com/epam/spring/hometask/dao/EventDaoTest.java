@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.dao;
 
+import com.epam.spring.hometask.configuration.MainConfig;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.EventRating;
 import org.junit.Before;
@@ -20,7 +21,7 @@ import static org.junit.Assert.*;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test.xml"})
+@ContextConfiguration(classes = {MainConfig.class})
 public class EventDaoTest {
 
     @Autowired

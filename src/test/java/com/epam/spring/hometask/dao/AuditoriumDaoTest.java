@@ -1,5 +1,6 @@
 package com.epam.spring.hometask.dao;
 
+import com.epam.spring.hometask.configuration.MainConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,7 @@ import static org.hamcrest.Matchers.lessThan;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test.xml"})
+@ContextConfiguration(classes = {MainConfig.class})
 public class AuditoriumDaoTest {
 
     private static final String TEST_NAME = "Usual";
