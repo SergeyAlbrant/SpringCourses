@@ -2,6 +2,7 @@ package com.epam.spring.hometask.aspect;
 
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.domain.Ticket;
+import lombok.Getter;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Aspect
 @Component
+@Getter
 public class CounterAspect {
 
     Map<Event, Long> counterByName = new HashMap<>();
