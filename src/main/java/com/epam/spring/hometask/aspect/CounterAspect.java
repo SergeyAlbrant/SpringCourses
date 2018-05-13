@@ -1,37 +1,53 @@
 package com.epam.spring.hometask.aspect;
 
 import com.epam.spring.hometask.domain.Event;
-import com.epam.spring.hometask.domain.EventType;
+import com.epam.spring.hometask.domain.Ticket;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Aspect
 @Component
 public class CounterAspect {
 
-    Map<Event, Map<EventType, Long>> counter = new HashMap<>();
+    Map<Event, Long> counterByName = new HashMap<>();
+    Map<Event, Long> counterByPrice = new HashMap<>();
+    Map<Event, Long> counterByBooking = new HashMap<>();
 
-    @AfterReturning(pointcut="execution(* com.epam.spring.hometask.service.EventService.getByName(..))",
-            returning="event")
-    public void countOfGetByNameMethod(Event event) throws Throwable {
-        if (!counter.containsKey(event)) {
-
-            Map<EventType, Long> eventMap = new HashMap<>();
-            eventMap.put(EventType.NAME, 1L);
-
-            counter.put(event, eventMap);
+    @AfterReturning(pointcut = "execution(* com.epam.spring.hometask.service.EventService.getByName(..))",
+            returning = "event")
+    public void countOfGetByNameMethod(Event event) {
+        if (!counterByName.containsKey(event)) {
+            counterByName.put(event, 0L);
         }
-        Map<EventType, Long> eventMap = counter.get(event);
+        counterByName.put(event, counterByName.get(event) + 1);
+    }
 
-        if (!eventMap.containsKey(EventType.NAME)) {
-            eventMap.put(EventType.NAME, 1L);
+    @AfterReturning(pointcut = "execution(* com.epam.spring.hometask.domain.Event.getBasePrice(..)) " +
+            "&& target(event)")
+    public void countOfGetPriceMethod(Event event) {
+        if (!counterByPrice.containsKey(event)) {
+            counterByPrice.put(event, 0L);
+        }
+        counterByPrice.put(event, counterByPrice.get(event) + 1);
+    }
+
+    @AfterReturning("execution(* com.epam.spring.hometask.service.BookingService.bookTickets(..)) " +
+            "&& args(tickets)")
+    public void countOfBookingMethod(Set<Ticket> tickets) {
+        for (Ticket ticket : tickets) {
+
+            Event event = ticket.getEvent();
+            if (!counterByBooking.containsKey(event)) {
+                counterByBooking.put(event, 0L);
+            }
+            counterByBooking.put(event, counterByBooking.get(event) + 1);
         }
 
-        counter.put(event, eventMap);
     }
 
 
