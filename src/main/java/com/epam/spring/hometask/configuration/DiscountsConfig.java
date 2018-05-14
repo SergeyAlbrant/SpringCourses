@@ -1,6 +1,5 @@
 package com.epam.spring.hometask.configuration;
 
-import com.epam.spring.hometask.service.DiscountService;
 import com.epam.spring.hometask.service.discount.BirthdayDiscountStrategy;
 import com.epam.spring.hometask.service.discount.DiscountStrategy;
 import com.epam.spring.hometask.service.discount.TenthTicketDiscountStrategy;
