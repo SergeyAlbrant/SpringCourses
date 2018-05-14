@@ -29,13 +29,13 @@ public class CounterAspect {
         counterByName.put(event, counterByName.get(event) + 1);
     }
 
-    @AfterReturning(pointcut = "execution(* com.epam.spring.hometask.domain.Event.getBasePrice(..)) " +
-            "&& target(event)")
+    @AfterReturning("execution(* com.epam.spring.hometask.service.BookingService.getTicketsPrice(..)) && args(event,..)")
     public void countOfGetPriceMethod(Event event) {
         if (!counterByPrice.containsKey(event)) {
             counterByPrice.put(event, 0L);
         }
         counterByPrice.put(event, counterByPrice.get(event) + 1);
+
     }
 
     @AfterReturning("execution(* com.epam.spring.hometask.service.BookingService.bookTickets(..)) " +
