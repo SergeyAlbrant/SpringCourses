@@ -19,7 +19,7 @@ import java.util.Set;
 @Configuration
 @PropertySource("classpath:auditoriums.properties")
 @Import(DiscountsConfig.class)
-@ComponentScan
+@ComponentScan(basePackages = "com.epam")
 @EnableAspectJAutoProxy
 public class MainConfig {
 

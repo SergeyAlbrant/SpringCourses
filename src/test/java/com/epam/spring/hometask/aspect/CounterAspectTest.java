@@ -26,16 +26,16 @@ public class CounterAspectTest {
     public void countOfGetByNameMethod() {
         Event event1 = new Event();
         event1.setName("First");
+        eventDao.save(event1);
 
         Event event2 = new Event();
         event2.setName("Second");
+        eventDao.save(event2);
 
         eventDao.getByName("First");
         eventDao.getByName("Second");
 
         System.out.println(counterAspect.getCounterByName());
-
-
     }
 
     @Test
