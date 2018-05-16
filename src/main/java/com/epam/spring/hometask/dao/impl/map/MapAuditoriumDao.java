@@ -1,4 +1,4 @@
-package com.epam.spring.hometask.dao.impl;
+package com.epam.spring.hometask.dao.impl.map;
 
 import com.epam.spring.hometask.dao.AuditoriumDao;
 import com.epam.spring.hometask.domain.Auditorium;
