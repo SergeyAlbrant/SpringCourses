@@ -2,12 +2,19 @@ package com.epam.spring.hometask.dao.impl.jdbc;
 
 import com.epam.spring.hometask.dao.UserDao;
 import com.epam.spring.hometask.domain.User;
+import lombok.Getter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class UserJDBCRepo implements UserDao {
+@Getter
+public class UserJDBCDao implements UserDao {
 
-
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     @Override
     public User getUserByEmail(String email) {
@@ -16,7 +23,7 @@ public class UserJDBCRepo implements UserDao {
 
     @Override
     public User save(User entity) {
-        return null;
+        jdbcTemplate.update("INSERT INTO BOOK (name, description) VALUES ('book name', 'book description')");
     }
 
     @Override

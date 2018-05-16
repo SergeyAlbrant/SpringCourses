@@ -2,7 +2,8 @@ CREATE TABLE users (
   id         INTEGER PRIMARY KEY,
   first_name VARCHAR(30),
   last_name  VARCHAR(30),
-  dob        TIMESTAMP
+  email      VARCHAR(30),
+  birthday   TIMESTAMP
 );
 
 CREATE TABLE events (
