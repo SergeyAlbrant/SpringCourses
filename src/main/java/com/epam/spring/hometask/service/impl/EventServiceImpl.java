@@ -6,6 +6,7 @@ import com.epam.spring.hometask.dao.EventDao;
 import com.epam.spring.hometask.domain.Event;
 import com.epam.spring.hometask.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
@@ -21,6 +22,7 @@ import java.util.Set;
 public class EventServiceImpl implements EventService {
 
     @Autowired
+    @Qualifier("mapEventDao")
     private EventDao eventDao;
 
     @Nullable

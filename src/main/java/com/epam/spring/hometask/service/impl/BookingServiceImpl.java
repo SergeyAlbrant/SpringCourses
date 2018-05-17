@@ -12,6 +12,7 @@ import com.epam.spring.hometask.domain.User;
 import com.epam.spring.hometask.service.BookingService;
 import com.epam.spring.hometask.service.DiscountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
@@ -26,8 +27,10 @@ import java.util.stream.Collectors;
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
+    @Qualifier("mapEventDao")
     private EventDao eventDao;
     @Autowired
+    @Qualifier("mapTicketDao")
     private TicketDao ticketDao;
     @Autowired
     private DiscountService discountService;

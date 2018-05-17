@@ -10,7 +10,8 @@ CREATE TABLE events (
   id         INTEGER PRIMARY KEY AUTO_INCREMENT,
   name       VARCHAR(30),
   base_price DOUBLE,
-  rating     INTEGER
+  rating     varchar(255)
+  check (rating in ('LOW', 'MID', 'HIGH'))
 );
 
 CREATE TABLE tickets (

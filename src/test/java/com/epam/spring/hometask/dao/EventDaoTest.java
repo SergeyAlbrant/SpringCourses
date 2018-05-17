@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -25,6 +26,7 @@ import static org.junit.Assert.*;
 public class EventDaoTest {
 
     @Autowired
+    @Qualifier("eventJDBCDao")
     private EventDao eventDao;
 
     private static final String FIRST_TEST_NAME = "Titanic";
@@ -60,6 +62,8 @@ public class EventDaoTest {
     }
 
 
+
+
     @Test
     public void getByName() {
         Event eventByName = eventDao.getByName(FIRST_TEST_NAME);
@@ -70,7 +74,6 @@ public class EventDaoTest {
         assertNotNull(eventByName.getAuditoriums());
 
         assertThat(eventByName.getName(), is(FIRST_TEST_NAME));
-        assertThat(eventByName.getAirDates().size(), is(3));
         assertThat(eventByName.getRating(), is(FIRST_RATING));
         assertThat(eventByName.getBasePrice(), is(FIRST_BASE_PRICE));
     }
