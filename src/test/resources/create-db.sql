@@ -1,5 +1,5 @@
 CREATE TABLE users (
-  id         INTEGER PRIMARY KEY,
+  id         INTEGER PRIMARY KEY AUTO_INCREMENT,
   first_name VARCHAR(30),
   last_name  VARCHAR(30),
   email      VARCHAR(30),
@@ -7,14 +7,14 @@ CREATE TABLE users (
 );
 
 CREATE TABLE events (
-  id         INTEGER PRIMARY KEY,
+  id         INTEGER PRIMARY KEY AUTO_INCREMENT,
   name       VARCHAR(30),
   base_price DOUBLE,
   rating     INTEGER
 );
 
 CREATE TABLE tickets (
-  id        INTEGER PRIMARY KEY,
+  id        INTEGER PRIMARY KEY AUTO_INCREMENT,
   seat      INTEGER,
   date_time TIMESTAMP,
   user_id   INTEGER,
@@ -24,14 +24,14 @@ CREATE TABLE tickets (
 );
 
 CREATE TABLE event_counter (
-  id                 INTEGER PRIMARY KEY,
+  id                 INTEGER PRIMARY KEY AUTO_INCREMENT,
   event_counter_case INTEGER,
   count              BIGINT
 
 );
 
 CREATE TABLE discount_counter (
-  id                INTEGER PRIMARY KEY,
+  id                INTEGER PRIMARY KEY AUTO_INCREMENT,
   discount_strategy VARCHAR(50),
   count             BIGINT,
   user_id           INTEGER,

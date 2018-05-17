@@ -6,6 +6,7 @@ import com.epam.spring.hometask.service.UserService;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
@@ -18,6 +19,7 @@ import java.util.Collection;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    @Qualifier("mapUserDao")
     private UserDao userDao;
 
     @Nullable

@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -38,6 +39,7 @@ public class UserDaoTest {
     private static final LocalDate SECOND_TEST_BIRTHDAY = LocalDate.of(1971, Month.APRIL, 2);
 
     @Autowired
+    @Qualifier("userJDBCDao")
     private UserDao userDao;
 
     @Before
@@ -81,12 +83,13 @@ public class UserDaoTest {
         assertNotNull(user);
 
         userDao.save(user);
+        User savedUser = userDao.getById(SECOND_TEST_ID);
 
-        assertThat(user.getId(), is(SECOND_TEST_ID));
-        assertThat(user.getFirstName(), is(SECOND_TEST_FIRSTNAME));
-        assertThat(user.getLastName(), is(SECOND_TEST_LASTNAME));
-        assertThat(user.getBirthday(), is(SECOND_TEST_BIRTHDAY));
-        assertThat(user.getEmail(), is(SECOND_TEST_EMAIL));
+        assertThat(savedUser.getId(), is(SECOND_TEST_ID));
+        assertThat(savedUser.getFirstName(), is(SECOND_TEST_FIRSTNAME));
+        assertThat(savedUser.getLastName(), is(SECOND_TEST_LASTNAME));
+        assertThat(savedUser.getBirthday(), is(SECOND_TEST_BIRTHDAY));
+        assertThat(savedUser.getEmail(), is(SECOND_TEST_EMAIL));
 
     }
 
@@ -112,6 +115,7 @@ public class UserDaoTest {
     @SuppressWarnings("Duplicates")
     public void getById() {
         User userById = userDao.getById(TEST_ID);
+
         assertNotNull(userById);
         assertNotNull(userById.getId());
         assertNotNull(userById.getFirstName());
