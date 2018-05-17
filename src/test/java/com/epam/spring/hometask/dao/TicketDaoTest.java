@@ -8,10 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -27,6 +31,7 @@ public class TicketDaoTest {
     private static final LocalDateTime NOW = LocalDateTime.now();
 
     @Autowired
+    @Qualifier("mapTicketDao")
     private TicketDao ticketDao;
 
     @Before
@@ -40,7 +45,6 @@ public class TicketDaoTest {
     private Ticket buildTicket(User user, Event event, LocalDateTime dateTime, long seat) {
         return new Ticket(user, event, dateTime, seat);
     }
-
 
     @Test
     public void getAllByEventAndDate() {

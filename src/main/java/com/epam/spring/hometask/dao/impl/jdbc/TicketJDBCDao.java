@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -63,7 +64,8 @@ public class TicketJDBCDao implements TicketDao {
 
     @Override
     public Set<Ticket> getAllByEventAndDate(Event event, LocalDateTime dateTime) {
-        return null;
+        return new HashSet<>(jdbcTemplate.query("SELECT * FROM tickets WHERE event_id=? AND date_time=?", rowMapper,
+                event.getId(), Date.valueOf(dateTime.));
     }
 
     private PreparedStatementSetter getPreparedStatementSetter(final Ticket ticket) {
