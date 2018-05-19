@@ -15,7 +15,7 @@ public class EventCounterJDBCDao {
 
     public Long getCounterByName(Event event) {
         return jdbcTemplate.queryForObject("SELECT count FROM event_counter WHERE event_id=? AND " +
-                        "event_counter_case='BY_NAME'", new Object[]{event.getId()}, Long.class);
+                "event_counter_case='BY_NAME'", new Object[]{event.getId()}, Long.class);
     }
 
     public Long getCounterByPrice(Event event) {
@@ -29,18 +29,18 @@ public class EventCounterJDBCDao {
     }
 
     public void putCounterByName(Event event, Long count) {
-        jdbcTemplate.update("UPDATE count SET count WHERE event_id=? AND " +
-                "event_counter_case='BY_NAME'", event.getId());
+        jdbcTemplate.update("UPDATE event_counter SET count = ? WHERE event_id=? AND " +
+                "event_counter_case='BY_NAME'", count, event.getId());
     }
 
     public void putCounterByPrice(Event event, Long count) {
-        jdbcTemplate.update("UPDATE count SET count WHERE event_id=? AND " +
-                "event_counter_case='BY_PRICE'", event.getId());
+        jdbcTemplate.update("UPDATE event_counter SET count = ? WHERE event_id=? AND " +
+                "event_counter_case='BY_PRICE'", count, event.getId());
     }
 
     public void putCounterByBooking(Event event, Long count) {
-        jdbcTemplate.update("UPDATE count SET count WHERE event_id=? AND " +
-                "event_counter_case='BY_BOOKING'", event.getId());
+        jdbcTemplate.update("UPDATE event_counter SET count = ? WHERE event_id=? AND " +
+                "event_counter_case='BY_BOOKING'", count, event.getId());
     }
 
 

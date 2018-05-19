@@ -31,6 +31,7 @@ CREATE TABLE event_counter (
   event_counter_case varchar(255)
     check (event_counter_case in ('BY_NAME', 'BY_PRICE', 'BY_BOOKING')),
   count              BIGINT
+  FOREIGN KEY (user_id) REFERENCES users (id),
 
 );
 
