@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 public class EventDaoTest {
 
     @Autowired
-    @Qualifier("eventJDBCDao")
+    @Qualifier("mapEventDao")
     private EventDao eventDao;
 
     private static final String FIRST_TEST_NAME = "Titanic";

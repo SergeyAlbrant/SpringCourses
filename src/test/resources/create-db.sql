@@ -9,6 +9,7 @@ CREATE TABLE users (
 CREATE TABLE events (
   id         INTEGER PRIMARY KEY AUTO_INCREMENT,
   name       VARCHAR(30),
+  date_time TIMESTAMP,
   base_price DOUBLE,
   rating     varchar(255)
   check (rating in ('LOW', 'MID', 'HIGH'))

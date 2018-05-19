@@ -11,8 +11,10 @@ import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +27,7 @@ public class EventJDBCDao implements EventDao {
 
     @Override
     public Event save(Event event) {
-        jdbcTemplate.update("INSERT INTO events(name, base_price, rating) VALUES (?,?,?)",
+        jdbcTemplate.update("INSERT INTO events(name, date_time, base_price, rating) VALUES (?,?,?)",
                 getPreparedStatementSetter(event));
         return event;
     }
@@ -62,18 +64,21 @@ public class EventJDBCDao implements EventDao {
 
     @Override
     public Set<Event> getForDateRange(LocalDate from, LocalDate to) {
-        return null;
+        return new HashSet<>(jdbcTemplate.query("SELECT * FROM events WHERE date_time BETWEEN ? AND ?", rowMapper,
+                Timestamp.valueOf(from.atStartOfDay()), Timestamp.valueOf(to.atStartOfDay())));
     }
 
     @Override
     public Set<Event> getNextEvents(LocalDateTime to) {
-        return null;
+        return new HashSet<>(jdbcTemplate.query("SELECT * FROM events WHERE date_time > ?", rowMapper,
+                Timestamp.valueOf(to)));
     }
 
     private PreparedStatementSetter getPreparedStatementSetter(final Event event) {
         return ps -> {
             int i = 0;
             ps.setString(++i, event.getName());
+            ps.setTimestamp(++i, Timestamp.valueOf(event.getAirDates().pollFirst()));
             ps.setDouble(++i, event.getBasePrice());
             ps.setString(++i, event.getRating().toString());
         };
@@ -83,6 +88,7 @@ public class EventJDBCDao implements EventDao {
         Event event = new Event();
         event.setId(rs.getLong("id"));
         event.setName(rs.getString("name"));
+        event.addAirDateTime(rs.getTimestamp("date_time").toLocalDateTime());
         event.setBasePrice(rs.getLong("base_price"));
         event.setRating(EventRating.valueOf(rs.getString("rating")));
         return event;

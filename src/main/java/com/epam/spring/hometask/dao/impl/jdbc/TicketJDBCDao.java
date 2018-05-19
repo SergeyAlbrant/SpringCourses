@@ -65,7 +65,7 @@ public class TicketJDBCDao implements TicketDao {
 
     @Override
     public Set<Ticket> getAllByEventAndDate(Event event, LocalDateTime dateTime) {
-        return new HashSet(jdbcTemplate.query("SELECT * FROM tickets WHERE event_id=? AND date_time=?", rowMapper,
+        return new HashSet<>(jdbcTemplate.query("SELECT * FROM tickets WHERE event_id=? AND date_time=?", rowMapper,
                 event.getId(), Timestamp.valueOf(dateTime)));
     }
 
@@ -73,7 +73,7 @@ public class TicketJDBCDao implements TicketDao {
         return ps -> {
             int i = 0;
             ps.setLong(++i, ticket.getSeat());
-            ps.setDate(++i, Date.valueOf(ticket.getDateTime().toLocalDate()));
+            ps.setTimestamp(++i, Timestamp.valueOf(ticket.getDateTime()));
             ps.setLong(++i, ticket.getUser().getId());
             ps.setLong(++i, ticket.getEvent().getId());
         };
