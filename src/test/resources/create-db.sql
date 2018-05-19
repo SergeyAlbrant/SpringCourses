@@ -27,7 +27,9 @@ CREATE TABLE tickets (
 
 CREATE TABLE event_counter (
   id                 INTEGER PRIMARY KEY AUTO_INCREMENT,
-  event_counter_case INTEGER,
+  event_id           INTEGER,
+  event_counter_case varchar(255)
+    check (event_counter_case in ('BY_NAME', 'BY_PRICE', 'BY_BOOKING')),
   count              BIGINT
 
 );
