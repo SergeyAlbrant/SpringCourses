@@ -15,6 +15,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +52,7 @@ public class TicketJDBCDao implements TicketDao {
     @Override
     public Ticket getById(Long entityId) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id=?", rowMapper, entityId);
+            return jdbcTemplate.queryForObject("SELECT * FROM tickets WHERE id=?", rowMapper, entityId);
         } catch (EmptyResultDataAccessException ex) {
             return null;
         }
@@ -64,8 +65,8 @@ public class TicketJDBCDao implements TicketDao {
 
     @Override
     public Set<Ticket> getAllByEventAndDate(Event event, LocalDateTime dateTime) {
-        return new HashSet<>(jdbcTemplate.query("SELECT * FROM tickets WHERE event_id=? AND date_time=?", rowMapper,
-                event.getId(), Date.valueOf(dateTime.));
+        return new HashSet(jdbcTemplate.query("SELECT * FROM tickets WHERE event_id=? AND date_time=?", rowMapper,
+                event.getId(), Timestamp.valueOf(dateTime)));
     }
 
     private PreparedStatementSetter getPreparedStatementSetter(final Ticket ticket) {
